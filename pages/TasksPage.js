@@ -1,11 +1,11 @@
-import path from 'path';
-import {IdeaPage} from './IdeaPage.js';
 import { expect } from 'playwright/test';
+import { IdeaPage } from './IdeaPage.js';
 class TasksPage {
   constructor(page) {
     this.page = page;
     this.Title= '';
   }
+
 
 async toggleShowCompletedTasks() {
 const toggle = this.page.getByRole('switch', { name: 'Show completed tasks' });
@@ -38,7 +38,7 @@ async AddTask() {
     .click();
 
   const Idea = new IdeaPage(this.page);
-  const randomTitle = await Idea.fillTaskForm(); 
+  const randomTitle = await Idea.fillTaskForm('task'); 
   this.Title = randomTitle;
 }
 
@@ -51,7 +51,7 @@ async EditTask() {
     const editButton = rowLocator.locator('button[data-id]');
     await editButton.click();
     const Idea = new IdeaPage(this.page);
-    const randomTitle = await Idea.fillTaskForm(); 
+    const randomTitle = await Idea.fillTaskForm('task'); 
     this.Title = randomTitle;
     console.log(`New Task Title is  ${this.Title}`);
     await expect(this.page.locator(`tr:has(input[value="${this.Title}"])`)).toBeVisible();
@@ -72,3 +72,4 @@ async EditTask() {
   await expect(this.page.locator(`tr:has(input[value="${this.Title}"])`)).toHaveCount(0);
 }}
 export { TasksPage };
+

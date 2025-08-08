@@ -8,17 +8,13 @@ import path from 'path';
 const dataFilePath = path.resolve('./data/data.json');
 const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
 
-test.skip('Branding Page', async ({ page }) => {
+test('Branding Page', async ({ page }) => {
   const login = new LoginPage(page);
   const Branding = new BrandingPage(page);
-
   await page.goto(data.login.url);
   await login.login(data.login.email, data.login.password);
-await page.getByRole('link', { name: 'Tasks', exact: true }).click();
   await Branding.navigateToSettings();
-
   await Branding.BrandingCompany();
   await Branding.ResetBrandingCompany();
-
 }
 )

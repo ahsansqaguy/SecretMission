@@ -19,7 +19,6 @@ class BrandingPage {
   async BrandingCompany() {
     await this.branding.click();
     // await this.squareImage.click();
-
     const imagePath = path.resolve('tests/files/STAMP.jpeg');
     await this.squareImage.setInputFiles(imagePath);  
     
@@ -28,13 +27,12 @@ class BrandingPage {
     await this.page.waitForTimeout(500);
     await this.saveBranding.click();
     await this.page.waitForTimeout(3000); 
-
   }
   async ResetBrandingCompany(){
     await this.branding.click();
     await this.resetBranding.click();
-
   }
 }
 
 export { BrandingPage };
+

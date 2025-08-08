@@ -1,6 +1,6 @@
 import { expect } from 'playwright/test';
 const path = require('path');
-const dataFilePath = path.resolve(__dirname, '../data/data.json');
+// const dataFilePath = path.resolve(__dirname, '../data/data.json');
 
 class DepartmentsPage {
   constructor(page) {

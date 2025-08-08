@@ -1,7 +1,7 @@
 const path = require('path');
 import fs from 'fs';
-const { expect } = require('@playwright/test');
 import { IdeaPage } from './IdeaPage';
+const { expect } = require('@playwright/test');
 const dataFilePath = path.resolve(__dirname, '../data/data.json');
 const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
 
@@ -24,7 +24,7 @@ const title = `${getRandomItem(adjectives)} ${getRandomItem(nouns)}`;
 console.log('Generated Funnel Title:', title);
 await this.page.locator('#funnel-title').fill(title);
 await this.page.locator('div:nth-child(3) > .div > .parent-position-relative > .select-wrapper > input').click();
-await this.page.locator('span').filter({ hasText: 'Sales' }).click();
+await this.page.locator('span').filter({ hasText: 'General' }).click();
 await this.page.locator('a').filter({ hasText: /^Save$/ }).click();
 await this.page.getByRole('link', { name: 'Funnels', exact: true }).click();
 await this.page.waitForSelector(`td >> text=${title}`, { timeout: 5000 });
@@ -50,14 +50,11 @@ await this.page.locator('#idea-title-field').fill('Idea Title here');
 // await this.page.getByRole('button', { name: 'Team' }).click();
 await this.page.getByRole('button', { name: 'Add Team Member' }).click();
 await this.page.getByText('Select', { exact: true }).click();
-await this.page.getByLabel('Suggestions').getByText('Arlo Padberg').click();
+await this.page.locator('[role="option"]').first().click();
 await this.page.getByRole('button', { name: 'Select innovation roles' }).click();
 await this.page.getByLabel('Suggestions').getByText('Idea Owner').click();
 await this.page.getByRole('button', { name: 'Add', exact: true }).click();
-// await this.page.locator('#idea_idea_score_attributes_revenue').click();
-// await this.page.locator('#idea_idea_score_attributes_revenue').fill('5000');
-// await this.page.locator('#idea_idea_score_attributes_costs').click();
-// await this.page.locator('#idea_idea_score_attributes_costs').fill('1000');
+
 }
 
   async fillDetailsSection() {

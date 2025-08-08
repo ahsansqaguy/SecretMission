@@ -4,7 +4,6 @@ import path from 'path';
 import { LoginPage } from '../pages/LoginPage.js';
 import { DepartmentsPage } from '../pages/DepartmentPage.js';
 
-// Load data.json
 const dataFilePath = path.resolve('./data/data.json');
 const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
 

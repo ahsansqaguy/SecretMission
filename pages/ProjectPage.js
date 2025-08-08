@@ -25,7 +25,7 @@ class ProjectPage {
     this.teamTab = page.getByRole('button', { name: 'Team' });
     this.addTeamMember = page.getByRole('link', { name: 'Add Team Member' });
     this.selectMemberDropdown = page.getByText('Select', { exact: true });
-    this.memberSuggestion = page.getByLabel('Suggestions').getByText('Arlo Padberg');
+    this.memberSuggestion = page.locator('[role="option"]')
     this.selectRole = page.getByRole('button', { name: 'Select innovation roles' });
     this.roleSuggestion = page.getByLabel('Suggestions').getByText('Idea Owner');
     this.addRoleButton = page.getByRole('button', { name: 'Add', exact: true });
@@ -88,7 +88,8 @@ class ProjectPage {
 
     await this.addTeamMember.click();
     await this.selectMemberDropdown.click();
-    await this.memberSuggestion.click();
+
+    await this.memberSuggestion.first().click();;
     await this.selectRole.click();
     await this.roleSuggestion.click();
     await this.addRoleButton.click();

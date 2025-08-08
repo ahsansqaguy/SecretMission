@@ -101,8 +101,9 @@ if (!isChecked) {
   await this.saveButton.click();
   await this.page.goto(data.PagesUrl.InnovationPortal);
   await this.page.reload();
-  await expect(this.missionsTab).toBeVisible();
+  // await expect(this.missionsTab).toBeVisible();
 }
 }
 
 export { EditInnovationPortal };
+

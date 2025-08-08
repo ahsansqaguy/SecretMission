@@ -7,7 +7,7 @@ import { MissionCampaignPage } from '../pages/MissionCampaignPage.js';
 const dataFilePath = path.resolve(__dirname, '../data/data.json');
 const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
 
-test.skip('Create Mission Campaign', async ({ page }) => {
+test('Create Mission Campaign', async ({ page }) => {
    const login = new LoginPage(page);
    const Mission= new MissionCampaignPage(page);
   await page.goto(data.login.url);

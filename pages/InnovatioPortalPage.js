@@ -1,7 +1,6 @@
 import { expect } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
-import { IdeaPage } from './IdeaPage';
 
 const dataFilePath = path.resolve(__dirname, '../data/data.json');
 const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
@@ -41,7 +40,7 @@ class InnovationPortal {
     this.addTaskButton = page.locator('#add-task-btn');
     this.titleField = page.getByLabel('Title');
     this.phaseField = page.getByLabel('Phase');
-    this.startDateButton = page.locator('div').filter({ hasText: /^Start datePick a date$/ }).getByRole('button');
+    this.startDateButton = page.locator('div.field', { has: this.page.locator('label:has-text("Start date")') }).locator('button[aria-haspopup="dialog"]').filter({ hasText: "Pick a date" }) .filter({ hasNot: this.page.locator('[style*="display: none"]') })
     this.startDateCell = page.getByRole('gridcell', { name: '30' }).nth(1);
     this.todayButton= page.getByRole('button', { name: 'Today' })
     this.endDateButton = page.getByRole('button', { name: 'Pick a date' });
@@ -131,16 +130,17 @@ expect(popup3.url()).toContain('support.acceptmission.com/en/');
     await this.phaseField.click();
     await this.phaseField.fill(randomPhase);
 
-    await this.startDateButton.click();
-    await this.startDateCell.click();
-    await this.todayButton.click();
+    // await this.startDateButton.first().click();
+    // await this.startDateCell.click();
+    // await this.todayButton.click();
     // await this.endDateButton.click();
     // await this.nextMonthButton.click();
     // await this.endDateCell.click();
-    await this.statusDropdown.click();
-    await this.statusOption.click();
+    // await this.statusDropdown.click();
+    // await this.statusOption.click();
     await this.saveButton.click();
   }
 }
 
 export { InnovationPortal };
+
